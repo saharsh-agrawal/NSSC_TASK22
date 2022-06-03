@@ -43,7 +43,7 @@
 			  float: left;
 			  width: 24.99999%;
 			}
-			@media only screen and (max-width: 700px) {
+			@media only screen and (max-width: 768px) {
 			  .responsive {
 				width: 49.99999%;
 				margin: 6px 0;
@@ -71,7 +71,7 @@
 				background: rgba(100, 0, 255, 0.9);
 				color:#fff;
 				width:100%;
-				border-radius:5%;
+				border-radius:30px;
 			}
 			.modal-body{
 				box-sizing: border-box;
@@ -82,6 +82,7 @@
 				right: -64%;
 				position: relative;
 				opacity: 0.5;
+				cursor:pointer;
 			}
 			.login-avatar{
 				width:20%;
@@ -142,6 +143,19 @@
 				}
 			}
 			
+			::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+			  color: lightgray;
+			  opacity: 1; /* Firefox */
+			}
+
+			:-ms-input-placeholder { /* Internet Explorer 10-11 */
+			  color: lightgray;
+			}
+
+			::-ms-input-placeholder { /* Microsoft Edge */
+			  color: lightgray;
+			}
+			
 		</style>
 
 		<script>
@@ -149,6 +163,26 @@
 			{
 			  document.getElementById("sidebar").classList.toggle('active');
 			  document.getElementById("toggle-btn").classList.toggle('active');
+			}
+			
+			function showLoginPass()
+			{
+				var x = document.getElementById("login-password");
+				if (x.type === "password") {
+					x.type = "text";
+				} else {
+					x.type = "password";
+				}
+			}
+			
+			function showSignPass()
+			{
+				var x = document.getElementById("sign-password");
+				if (x.type === "password") {
+					x.type = "text";
+				} else {
+					x.type = "password";
+				}
 			}
 		</script>
 		
@@ -170,13 +204,14 @@
 				<div class="modal-body">
 					<h1><center>Log in to your Account</center></h1>
 					<FORM NAME="loginform" ACTION="#" METHOD="POST">
-						<P>Username</P>
-						<INPUT TYPE="text" NAME="username" PLACEHOLDER="Email or Mobile Number" REQUIRED>
+						<P>Email Address</P>
+						<INPUT TYPE="text" NAME="email" PLACEHOLDER="Email Address" REQUIRED>
 						<P>Password</P>
-						<INPUT TYPE="password" ID="password" NAME="password" PLACEHOLDER="Enter password" REQUIRED>
+						<INPUT TYPE="password" ID="login-password" NAME="password" PLACEHOLDER="Enter password" REQUIRED>
+						<input type="checkbox" onclick="showLoginPass()" style="width:15px;"> Show Password
 						<INPUT TYPE="submit" NAME="submit" VALUE="Login">
-						<A HREF="<?php echo $path; ?>forgotpassword.php">Forgot Password</A>
-						<BR><BR>
+						<A HREF="#">Forgot Password</A>
+						<BR><br>
 						<CENTER><A data-toggle="modal" data-target="#signUpModal" data-dismiss="modal">Don't have an Account?<br>Sign Up</A></CENTER>
 					</FORM>
 				</div>
@@ -194,20 +229,28 @@
 		  
 			<!-- Modal content-->
 			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<img src="img/avatar.png" class="login-avatar">
-				</div>
-				<div class="modal-body">
-					<h1><center>Sign Up</center></h1>
+				<button type="button" class="close" data-dismiss="modal" style="right:-40%;top: 10px;">&times;</button>
+				<div class="modal-body" style="margin-top:10px;padding: 0px 30px 15px 30px">
+					<h1 style="margin:0;"><center>Sign Up</center></h1>
 					<FORM NAME="loginform" ACTION="#" METHOD="POST">
-						<P>Username</P>
-						<INPUT TYPE="text" NAME="username" PLACEHOLDER="Email or Mobile Number" REQUIRED>
+						
+						<P>First Name</P>
+						<INPUT TYPE="text" NAME="f_name" PLACEHOLDER="First Name" REQUIRED>
+						
+						<P>Last Name</P>
+						<INPUT TYPE="text" NAME="l_name" PLACEHOLDER="Last Name" REQUIRED>
+						
+						<P>Email Address</P>
+						<INPUT TYPE="text" NAME="email" PLACEHOLDER="Email Address" REQUIRED>
 						<P>Password</P>
-						<INPUT TYPE="password" ID="password" NAME="password" PLACEHOLDER="Enter password" REQUIRED>
-						<INPUT TYPE="submit" NAME="submit" VALUE="Login">
-						<A HREF="<?php echo $path; ?>forgotpassword.php">Forgot Password</A>
-						<BR><BR>
+						<INPUT TYPE="password" ID="sign-password" NAME="password" PLACEHOLDER="Enter password" REQUIRED>
+						<input type="checkbox" onclick="showSignPass()" style="width:15px;"> Show Password
+						
+						<P>Confirm Password</P>
+						<INPUT TYPE="password" ID="confirm-password" NAME="confirm-password" PLACEHOLDER="Confirm password" REQUIRED>
+						
+						<INPUT TYPE="submit" NAME="submit" VALUE="Sign Up">
+						<BR>
 						<CENTER><A data-toggle="modal" data-target="#loginModal" data-dismiss="modal">Login Instead</A></CENTER>
 					</FORM>
 				</div>
@@ -472,10 +515,10 @@
 			</div>
 
 			<ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-			  <li class="ms-3"><a target="_blank" href="https://www.facebook.com/nssc.iit/"><i class="fa fa-facebook"></i></a></li>
-			  <li class="ms-3"><a target="_blank" href="http://www.nssc.in/"><i class="fa fa-globe"></i></a></li>
-			  <li class="ms-3"><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
-			  <li class="ms-3"><a target="_blank" href="https://in.linkedin.com/company/national-students'-space-challenge"><i class="fa fa-linkedin"></i></a></li>
+			  <li class=""><a target="_blank" href="https://www.facebook.com/nssc.iit/"><i class="fa fa-facebook"></i></a></li>
+			  <li class=""><a target="_blank" href="http://www.nssc.in/"><i class="fa fa-globe"></i></a></li>
+			  <li class=""><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
+			  <li class=""><a target="_blank" href="https://in.linkedin.com/company/national-students'-space-challenge"><i class="fa fa-linkedin"></i></a></li>
 			</ul>
 			</footer>
 		</div>
