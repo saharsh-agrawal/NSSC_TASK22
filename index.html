@@ -10,6 +10,9 @@
 
 		<link href="bootstrap.min.css" rel="stylesheet">
 		<script src="bootstrap.bundle.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
 		<link href="carousel.css" rel="stylesheet">
 		<link href="header.css" rel="stylesheet">
@@ -57,6 +60,88 @@
 			  clear: both;
 			}
 			
+			
+			/*LOGIN MODAL*/
+			
+			.modal-dialog{
+				width:35%;
+				margin: 30px auto;
+			}
+			.modal-content{
+				background: rgba(100, 0, 255, 0.9);
+				color:#fff;
+				width:100%;
+				border-radius:5%;
+			}
+			.modal-body{
+				box-sizing: border-box;
+				padding:30px 30px 20px 30px;
+			}
+			.close{
+				color:#fff;
+				right: -64%;
+				position: relative;
+				opacity: 0.5;
+			}
+			.login-avatar{
+				width:20%;
+				border:10%;
+				position:relative;
+				left: -12.5%;
+				border-radius:50%;
+			}
+			.modal-body h1{
+				padding:0 0 20px;
+				font-size:22px;
+			}
+			.modal-body p{
+				margin:0;
+				padding:0;
+				font-weight:bold;
+				font-size:20px;
+			}
+			.modal-body input{
+				width:100%;
+				margin-bottom:20px;
+			}
+			.modal-body input[type="text"], input[type="password"]{
+				border:none;
+				border-bottom:1px solid #fff;
+				background:transparent;
+				outline:none;
+				height:40px;
+				color:#fff;
+				font-size:16px;
+			}
+			.modal-body input[type="submit"]{
+				border:none;
+				outline:none;
+				height:40px;
+				background:#06F;
+				color:#fff;
+				font-size:18px;
+				border-radius:20px;
+			}
+			.modal-body input[type="submit"]:hover{
+				cursor:pointer;
+				background:#39dc79;
+				color:#000;
+			}
+			.modal-body a{
+				text-decoration:none;
+				color:#fff;
+				font-size:16px;
+			}
+			.modal-body a:hover{
+				color:#39dc79!important;
+			}
+
+			@media only screen and (max-width:1000px){
+				.modal-dialog{
+					width:350px;
+				}
+			}
+			
 		</style>
 
 		<script>
@@ -72,10 +157,73 @@
 	<body>
 		<div id="home-section"></div>
 		
+		<!-- Login Modal -->
+		<div class="modal fade" id="loginModal" role="dialog">
+		  <div class="modal-dialog">
+		  
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<img src="img/avatar.png" class="login-avatar">
+				</div>
+				<div class="modal-body">
+					<h1><center>Log in to your Account</center></h1>
+					<FORM NAME="loginform" ACTION="#" METHOD="POST">
+						<P>Username</P>
+						<INPUT TYPE="text" NAME="username" PLACEHOLDER="Email or Mobile Number" REQUIRED>
+						<P>Password</P>
+						<INPUT TYPE="password" ID="password" NAME="password" PLACEHOLDER="Enter password" REQUIRED>
+						<INPUT TYPE="submit" NAME="submit" VALUE="Login">
+						<A HREF="<?php echo $path; ?>forgotpassword.php">Forgot Password</A>
+						<BR><BR>
+						<CENTER><A data-toggle="modal" data-target="#signUpModal" data-dismiss="modal">Don't have an Account?<br>Sign Up</A></CENTER>
+					</FORM>
+				</div>
+				<!--<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>-->
+			</div>
+			
+		  </div>
+		</div>
+		
+		<!-- Sign Up Modal -->
+		<div class="modal fade" id="signUpModal" role="dialog">
+		  <div class="modal-dialog">
+		  
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<img src="img/avatar.png" class="login-avatar">
+				</div>
+				<div class="modal-body">
+					<h1><center>Sign Up</center></h1>
+					<FORM NAME="loginform" ACTION="#" METHOD="POST">
+						<P>Username</P>
+						<INPUT TYPE="text" NAME="username" PLACEHOLDER="Email or Mobile Number" REQUIRED>
+						<P>Password</P>
+						<INPUT TYPE="password" ID="password" NAME="password" PLACEHOLDER="Enter password" REQUIRED>
+						<INPUT TYPE="submit" NAME="submit" VALUE="Login">
+						<A HREF="<?php echo $path; ?>forgotpassword.php">Forgot Password</A>
+						<BR><BR>
+						<CENTER><A data-toggle="modal" data-target="#loginModal" data-dismiss="modal">Login Instead</A></CENTER>
+					</FORM>
+				</div>
+				<!--<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>-->
+			</div>
+			
+		  </div>
+		</div>
+		
+		
 		<a href="#">
 			<img src="logo.png" id='logo'>
 		</a>
-	
+		
 		<div class="pc-navbar">
 	
 			<ul>
@@ -84,7 +232,7 @@
 				<li><a href="#team-section">Team</a></li>
 			</ul>
 	
-			<button id="login-button-navbar">LOGIN / REGISTER</button>
+			<button id="login-button-navbar" data-toggle="modal" data-target="#loginModal">LOGIN / REGISTER</button>
 			
 		</div>
 	
@@ -109,7 +257,7 @@
 				</font>
 			</ul>
 			<br>
-			<button id="login-button-sidebar">LOGIN / REGISTER</button>
+			<button id="login-button-sidebar" data-toggle="modal" data-target="#loginModal" onclick=togglesidebar()>LOGIN / REGISTER</button>
 		</div>
 			
 		<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -145,7 +293,7 @@
 			<div class="row">
 			  <div class="col-lg-6 col-md-8 mx-auto">
 				<h1 style="color:white;">Gallery</h1>
-				<p class="lead" style="color:white;">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+				<p class="lead" style="color:white;">Something short and leading about the collection below-its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
 			  </div>
 			</div>
 		</section>
@@ -225,7 +373,7 @@
 			<div class="row">
 			  <div class="col-lg-6 col-md-8 mx-auto">
 				<h1 style="color:white;">Our Team</h1>
-				<p class="lead" style="color:white;">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+				<p class="lead" style="color:white;">Something short and leading about the collection below-its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
 			  </div>
 			</div>
 		</section>
@@ -248,10 +396,10 @@
 						<div class="d-flex">
 							<small class="text-muted">
 							<ul class="nav list-unstyled d-flex">
-							  <li class="ms-3"><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
-							  <li class="ms-3"><a target="_blank" href="#"><i class="fa fa-instagram"></i></a></li>
-							  <li class="ms-3"><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
-							  <li class="ms-3"><a target="_blank" href="#"><i class="fa fa-linkedin"></i></a></li>
+							  <li class=""><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
+							  <li class=""><a target="_blank" href="#"><i class="fa fa-instagram"></i></a></li>
+							  <li class=""><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
+							  <li class=""><a target="_blank" href="#"><i class="fa fa-linkedin"></i></a></li>
 							</ul>
 							</small>
 						</div>
@@ -272,10 +420,10 @@
 						<div class="d-flex">
 							<small class="text-muted">
 							<ul class="nav list-unstyled d-flex">
-							  <li class="ms-3"><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
-							  <li class="ms-3"><a target="_blank" href="#"><i class="fa fa-instagram"></i></a></li>
-							  <li class="ms-3"><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
-							  <li class="ms-3"><a target="_blank" href="#"><i class="fa fa-linkedin"></i></a></li>
+							  <li class=""><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
+							  <li class=""><a target="_blank" href="#"><i class="fa fa-instagram"></i></a></li>
+							  <li class=""><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
+							  <li class=""><a target="_blank" href="#"><i class="fa fa-linkedin"></i></a></li>
 							</ul>
 							</small>
 						</div>
@@ -296,10 +444,10 @@
 						<div class="d-flex">
 							<small class="text-muted">
 							<ul class="nav list-unstyled d-flex">
-							  <li class="ms-3"><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
-							  <li class="ms-3"><a target="_blank" href="#"><i class="fa fa-instagram"></i></a></li>
-							  <li class="ms-3"><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
-							  <li class="ms-3"><a target="_blank" href="#"><i class="fa fa-linkedin"></i></a></li>
+							  <li class=""><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
+							  <li class=""><a target="_blank" href="#"><i class="fa fa-instagram"></i></a></li>
+							  <li class=""><a target="_blank" href="#"><i class="fa fa-twitter"></i></a></li>
+							  <li class=""><a target="_blank" href="#"><i class="fa fa-linkedin"></i></a></li>
 							</ul>
 							</small>
 						</div>
