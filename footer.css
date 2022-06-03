@@ -1,0 +1,22 @@
+.fa-facebook{
+	color:#1b74e4;
+}
+.fa-globe{
+  color: #E4405F;
+}
+.fa-linkedin{
+  color:#0077B5;
+}
+.fa-twitter{
+  color:#00acee;
+}
+.fa-instagram{
+  color:#f63954;
+}
+i{
+    font-size: 24px !important;
+    transition: font-size 0.5s;
+}
+i:hover {
+  font-size: 26px !important;
+}
