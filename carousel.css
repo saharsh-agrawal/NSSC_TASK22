@@ -25,6 +25,13 @@
   min-width:100%;
 }
 
+.carousel-indicators .active {
+    width: 30px;
+    height: 3px;
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
